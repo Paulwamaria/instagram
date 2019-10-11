@@ -48,3 +48,31 @@ class TestProfile(TestCase):
         self.assertTrue(len(profiles)==0)
 
 
+class TestComment(TestCase):
+
+    def setUp(self):
+        self.new_profile = Profile(profile_pic = 'media/default.jpg', bio = 'I love coding')
+        self.new_profile.save_profile()
+
+        self.new_image = Image(image='media/default.jpg', image_name='hacker', image_caption='This guy is a real hacker',
+                               profile=self.new_profile, likes=0)
+        self.new_image.save_image()
+
+        self.new_comment = Comment(content ='lovely image', image = self.new_image)
+
+        self.new_comment.save_comments()
+
+
+    def test_isinstance(self):
+        self.assertTrue(isinstance(self.new_comment, Comment))  
+
+
+    def test_save_comment(self):
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments)>0)
+
+
+    def test_delete_comment(self):
+        self.new_comment.delete_comments()
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments)==0)

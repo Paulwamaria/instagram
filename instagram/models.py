@@ -37,7 +37,7 @@ class Image(models.Model):
 
 
 class Comment(models.Model):
-    comments = models.TextField()
+    content = models.TextField()
     image =models.ForeignKey(Image, on_delete = models.CASCADE)
 
     def __str__(self):
@@ -45,3 +45,6 @@ class Comment(models.Model):
 
     def save_comments(self):
         self.save()
+
+    def delete_comments(self):
+        self.delete()
