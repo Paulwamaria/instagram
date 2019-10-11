@@ -14,8 +14,9 @@ class TestImage(TestCase):
 
 
     def test_isinstance(self):
-        self.new_image = Image(image='media/default.jpg', image_name='hacker', image_caption='This guy is a real hacker',
-                               profile=self.new_profile, likes=0)
-        self.new_image.save_image()
-
         self.assertTrue(isinstance(self.new_image,Image))
+
+
+    def test_save_image(self):
+        images = Image.objects.all()
+        self.assertTrue(len(images)>0)
