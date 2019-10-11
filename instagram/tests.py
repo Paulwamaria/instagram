@@ -26,3 +26,25 @@ class TestImage(TestCase):
         self.new_image.delete_image()
         images = Image.objects.all()
         self.assertTrue(len(images)==0)
+
+
+class TestProfile(TestCase):
+    def setUp(self):
+        self.new_profile = Profile(profile_pic = 'media/default.jpg', bio = 'I love coding')
+        self.new_profile.save_profile()
+
+    def test_isinstance(self):
+        self.assertTrue(isinstance(self.new_profile, Profile))
+
+
+    def test_save_profile(self):
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles)>0)
+
+    def test_delete_profile(self):
+        self.new_profile.delete_profile()
+        profiles = Profile.objects.all()
+
+        self.assertTrue(len(profiles)==0)
+
+

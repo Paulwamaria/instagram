@@ -12,6 +12,9 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
+    def delete_profile(self):
+        self.delete()
+
 class Image(models.Model):
     image = models.ImageField(upload_to='media/', default='media/default.jpg')
     image_name = models.CharField(max_length=60)
