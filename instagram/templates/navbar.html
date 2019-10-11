@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse bg-light">
+            <div class="container-fluid nv">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand text-dark" href="{% url 'home' %}" id="inst">Instagram</a>
+
+
+                </div>
+
+                <div class="col-sm-4 col-md-4 navbar-right">
+                    <form class="navbar-form" role="search" action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="search" name="search_term">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i
+                                        class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+</body>
+
+</html>

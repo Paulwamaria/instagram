@@ -5,6 +5,13 @@ class Profile(models.Model):
     profile_pic =  models.ImageField(upload_to='media/', default='media/default.jpg')
     bio = models.TextField()
 
+
+    def __str__(self):
+        return self.profile_pic
+
+    def save_profile(self):
+        self.save()
+
 class Image(models.Model):
     image = models.ImageField(upload_to='media/', default='media/default.jpg')
     image_name = models.CharField(max_length=60)
@@ -19,7 +26,16 @@ class Image(models.Model):
     def __str__(self):
         return self.image_name
 
+    def save_image(self):
+        self.save()
+
 
 class Comment(models.Model):
     comments = models.TextField()
     image =models.ForeignKey(Image, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.comments
+
+    def save_comments(self):
+        self.save()
