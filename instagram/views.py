@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from .forms import InstaRegistrationForm
 
 def home(request):
     message = "Welcome to Instagram"
@@ -7,3 +8,4 @@ def home(request):
         "message":message
     }
     return render(request, 'instagram/home.html',context)
+
