@@ -1,4 +1,5 @@
 {%extends "instagram/base.html"%}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -20,7 +21,7 @@
 
                     <form action="" method="POST">
                         {% csrf_token %}
-                        {{form}}
+                        {{form|crispy}}
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-sm sign form-control" value="Sign Up"
                                 id='sign'>
