@@ -129,3 +129,5 @@ ACCOUNT_FORMS = {
     'registration':'instagram_project.forms.InstaRegistrationForm',
 }
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL='home'
+LOGIN_URL = 'login'

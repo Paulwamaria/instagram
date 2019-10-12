@@ -1,19 +1,7 @@
 from django.db import models
 
-# Create your models here.
-class Profile(models.Model):
-    profile_pic =  models.ImageField(upload_to='media/', default='media/default.jpg')
-    bio = models.TextField()
-
-
-    def __str__(self):
-        return self.profile_pic
-
-    def save_profile(self):
-        self.save()
-
-    def delete_profile(self):
-        self.delete()
+from django.contrib.auth.models import User
+    
 
 class Image(models.Model):
     image = models.ImageField(upload_to='media/', default='media/default.jpg')
@@ -21,7 +9,7 @@ class Image(models.Model):
     image_caption = models.TextField()
     created_on = models.DateTimeField(auto_now=True)
     likes = models.IntegerField(default=0)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
 
     class Meta:
         ordering = ['-created_on']
@@ -41,7 +29,7 @@ class Comment(models.Model):
     image =models.ForeignKey(Image, on_delete = models.CASCADE)
 
     def __str__(self):
-        return self.comments
+        return self.content
 
     def save_comments(self):
         self.save()

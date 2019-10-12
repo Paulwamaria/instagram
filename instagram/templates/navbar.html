@@ -38,7 +38,7 @@
                     {% if user.is_authenticated %}
                     <div class="d-inline-flex prof-links">
 
-                        <a class="nav-item nav-link" href="#">Profile</a>
+                        <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                     </div>
 

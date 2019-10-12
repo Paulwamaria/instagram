@@ -16,3 +16,17 @@
     margin-top:20px;
 
 }
+
+/* .nv{
+    display:flex;
+    justify-content: space-around;
+} */
+
+.prof-links a{
+    padding-left: px;
+    color:gray;
+    margin-left:10px;
+}
+.prof-links a:hover{
+    color:blue;
+}
