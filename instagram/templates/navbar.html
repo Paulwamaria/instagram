@@ -10,6 +10,7 @@
 
 <body>
     <div class="container">
+
         <nav class="navbar navbar-inverse bg-light">
             <div class="container-fluid nv">
                 <div class="navbar-header">
@@ -20,6 +21,7 @@
                 </div>
 
                 <div class="col-sm-4 col-md-4 navbar-right">
+
                     <form class="navbar-form" role="search" action="">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="search" name="search_term">
@@ -29,6 +31,25 @@
                             </div>
                         </div>
                     </form>
+
+
+                </div>
+                <div class="navbar-nav d-inline-flex ">
+                    {% if user.is_authenticated %}
+                    <div class="d-inline-flex prof-links">
+
+                        <a class="nav-item nav-link" href="#">Profile</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                    </div>
+
+                    {% else %}
+                    <div class="d-inline-flex prof-links">
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                    </div>
+
+                    {% endif %}
+
                 </div>
 
             </div>
