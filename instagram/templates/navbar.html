@@ -15,7 +15,11 @@
             <div class="container-fluid nv">
                 <div class="navbar-header">
 
+                    <a class="navbar-brand text-dark inst" href="{% url 'home' %}" id="inst"><i class="fa fa-home"
+                            aria-hidden="true"></i>
+                    </a>
                     <a class="navbar-brand text-dark inst" href="{% url 'home' %}" id="inst">Instagram</a>
+
 
 
                 </div>
@@ -37,6 +41,8 @@
                 <div class="navbar-nav d-inline-flex ">
                     {% if user.is_authenticated %}
                     <div class="d-inline-flex prof-links">
+                        <a class="nav-item nav-link" href="{% url 'image-create' %}"><i class="fa fa-plus-square-o"
+                                aria-hidden="true">Upload</i></a>
 
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
