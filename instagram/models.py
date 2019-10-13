@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from django.contrib.auth.models import User
 from users.models import Profile
@@ -24,6 +25,11 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
+
+    def get_absolute_url(self):
+        return reverse('image-detail',kwargs = {'pk':self.pk} )
+
+    
 
 
 class Comment(models.Model):
