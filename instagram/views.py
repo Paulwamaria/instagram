@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -65,3 +65,19 @@ class ImageDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
             return True
 
         return False
+
+def like(request, image_id):
+    image = get_object_or_404(Image, pk=image_id)
+
+
+class UserImageListView(ListView):
+    model = Image
+    template_name='instagram/home.html'
+    context_object_name ='images'
+    ordering = ['-created_on']
+
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username = self.kwargs.get('username'))
+        return Image.objects.filter(profile=user.profile).order_by('-created_on')
+
