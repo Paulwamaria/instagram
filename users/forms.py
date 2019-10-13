@@ -50,7 +50,7 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['email','full_name','username']
 
 
-class ProfileUpdateFoem(forms.ModelForm):
+class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_pic','bio']
