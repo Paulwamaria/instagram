@@ -1,4 +1,4 @@
-{%extends "instagram/base.html"%}
+{%extends "users/base.html"%}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="panel panel-white">
                     <div class="panel-body">
-                        <p>Have an account? <a href="#">Login</a></p>
+                        <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
                     </div>
 
                 </div>
