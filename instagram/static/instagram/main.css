@@ -30,3 +30,8 @@
 .prof-links a:hover{
     color:blue;
 }
+.account-img{
+    width:25%;
+    height:auto;
+    border-radius: 50%;
+}
