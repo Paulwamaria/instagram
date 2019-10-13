@@ -30,8 +30,20 @@
 .prof-links a:hover{
     color:blue;
 }
-.account-img{
-    width:25%;
+.prof-img{
+    width:15%;
     height:auto;
     border-radius: 50%;
+}
+.img-posts{
+    max-width: 720px;
+    height: auto;
+}
+.scroll-menu {
+    height: auto;
+    max-height: 500px;
+    overflow-x: hidden;
+}
+.card{
+    margin-top:30px;
 }
