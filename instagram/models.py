@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import User
+from users.models import Profile
     
 
 class Image(models.Model):
@@ -9,6 +10,7 @@ class Image(models.Model):
     image_caption = models.TextField()
     created_on = models.DateTimeField(auto_now=True)
     likes = models.IntegerField(default=0)
+    profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
 
 
     class Meta:
