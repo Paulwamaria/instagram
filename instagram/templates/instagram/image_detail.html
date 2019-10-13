@@ -1,0 +1,31 @@
+{% extends 'instagram/base.html' %}
+
+
+{% block content %}
+
+
+
+<div class="card card-default">
+    <div class="card-header">
+        <img src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img img-responsive" id="">
+        <a class="mr-2" href="#">{{ image.profile.user.username }}</a>
+    </div>
+
+    <div class="card-body">
+        <img src="{{image.image.url}}" class="img-posts img-responsive" id="">
+
+        <div class="image-metadata">
+                <i class="fa fa-heart-o  d-inline-flex" aria-hidden="true"><br>{{image.likes}} likes</i>
+                <i class="fa fa-comment-o  d-inline-flex" aria-hidden="true"></i>
+<!--             
+            <small class="text-muted">{{ image.created_on|date:'F d, Y' }}</small> -->
+        </div>
+
+        <h2><a class="" href="#">{{ image.image_name }}</a></h2>
+        <p class="">{{ object.image_caption }}</p>
+    </div>
+</div>
+
+
+
+{% endblock %}
