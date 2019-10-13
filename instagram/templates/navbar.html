@@ -26,9 +26,9 @@
 
                 <div class="col-sm-4 col-md-4 navbar-right">
 
-                    <form class="navbar-form" role="search" action="">
+                    <form class="navbar-form" role="search" action="{% url 'search_results' %}">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="search" name="search_term">
+                            <input type="text" class="form-control" placeholder="search by Username" name="search_user">
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i
                                         class="glyphicon glyphicon-search"></i></button>
