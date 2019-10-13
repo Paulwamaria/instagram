@@ -81,3 +81,16 @@ class UserImageListView(ListView):
         user = get_object_or_404(User, username = self.kwargs.get('username'))
         return Image.objects.filter(profile=user.profile).order_by('-created_on')
 
+
+
+def search_results(request):
+    if 'search_user' in request.GET and request.GET["search_user"]:
+        search_term = request.GET.get("search_user")
+        searched_users = User.objects.filter(username__icontains=search_term)
+        message=search_term
+        return render(request, "instagram/user_image.html", {"images":searched_users, "message":message})
+
+    else:
+        message = "Search term not found"
+
+        return render(request,'instagram/search.html',{"message":message})
