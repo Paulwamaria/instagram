@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .forms import InstaRegistrationForm
+from .forms import InstaRegistrationForm, UserUpdateForm, ProfileUpdateFoem
 from django.contrib import messages
 
 def register(request):
@@ -21,6 +21,13 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    u_form = UserUpdateForm()
+    p_form = ProfileUpdateFoem()
+
+    context={
+        'u_form':u_form,
+        'p_form':p_form
+    }
+    return render(request, 'users/profile.html',context)
 
 
