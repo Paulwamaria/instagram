@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        >
 
     <link rel="stylesheet" href="{% static  'instagram/main.css' %}">
 
@@ -44,15 +44,16 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <img src="{{user.profile.profile_pic.url}}" class="rounded-circle prof-img" id="">
-                        <a class="mr-2" href="#">{{ user.username }}</a>
+                        <a href="{% url 'user-images' user.username %}"> <img src="{{user.profile.profile_pic.url}}" class="rounded-circle prof-img" id=""></a>
+                       
+                        <a class="mr-2" href="{% url 'user-images' user.username %}">{{ user.username }}</a>
                     </div>
-                    <div class="card-body card-default">
+                    <div class="card-body card-default ">
                         <h4> Stories.</h4>
                         <div class="">
                             {% for image in images %}
-                            <a class="" href="#"> <img src="{{image.profile.profile_pic.url}}"
-                                    class="rounded-circle prof-img" id="">{{image.profile.user.username}} <br>{{image.image_name}}</a><br>
+                            <a class="scroll-menu" href="{% url 'user-images' image.profile.user.username %}"> <img src="{{image.profile.profile_pic.url}}"
+                                    class="rounded-circle prof-img" id="">{{image.profile.user.username}}</a>
 
                             {% endfor %} 
                         </div>

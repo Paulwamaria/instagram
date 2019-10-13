@@ -8,7 +8,7 @@
 <div class="card card-default">
     <div class="card-header">
         <img src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img img-responsive" id="">
-        <a class="mr-2" href="#">{{ image.profile.user.username }}</a>
+        <a class="mr-2" href="{% url 'user-images' image.profile.user.username %}">{{ image.profile.user.username }}</a>
         {% if image.profile == user.profile %}
         <div>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'image-update' image.id %}">Update</a>
