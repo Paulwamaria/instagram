@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Image
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView,RedirectView
+from django.http import HttpResponse
+from .models import Image, Comment
 from users.models import Profile
 
 
@@ -19,7 +21,8 @@ def home(request):
     }
     return render(request, 'instagram/home.html',context)
 
-class ImageListView(ListView):
+class ImageListView(LoginRequiredMixin,ListView):
+    
     model = Image
     template_name='instagram/home.html'
     context_object_name ='images'
@@ -27,6 +30,9 @@ class ImageListView(ListView):
 
 class ImageDetailView(DetailView):
     model = Image
+
+# class ProfileDetailView(DetailView):
+#     model = Profile
 
 class ImageCreateView(LoginRequiredMixin,CreateView):
      
@@ -50,10 +56,44 @@ class ImageUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     def test_func(self):
         image = self.get_object()
 
-        if self.request.user == image.profile:
+        if self.request.user.profile == image.profile:
             return True
 
         return False
+
+
+class CommentCreateView(LoginRequiredMixin,CreateView):
+     
+    model = Comment
+    fields = ['content','image', 'user']
+    success_url = ('/')
+
+    def form_valid(self,form):
+        form.instance.profile = self.request.user.profile
+        return super().form_valid(form)
+
+    def get_user(self):
+        user = self.request.user
+        return user
+
+    def get_image(self,image_id):
+        image = get_object_or_404(Image, pk=image_id)
+        return image
+
+class ImageLikeRedirectView(RedirectView):
+    def get_redirect_url(self,pk, *args, **kwargs):
+        obj = get_object_or_404(Image, pk = pk)
+        url= obj.get_absolute_url()
+      
+        user = self.request.user
+        if user.is_authenticated:
+            if user in obj.likes.all():
+                obj.likes.remove(user)
+                status =''
+            else:
+                obj.likes.add(user)
+                status='red'
+        return url
 
 class ImageDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Image
@@ -65,9 +105,8 @@ class ImageDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
             return True
 
         return False
+#  
 
-def like(request, image_id):
-    image = get_object_or_404(Image, pk=image_id)
 
 
 class UserImageListView(ListView):
@@ -94,3 +133,10 @@ def search_results(request):
         message = "Search term not found"
 
         return render(request,'instagram/search.html',{"message":message})
+def display_profile(request,username):
+    profile = Profile.objects.get(user__username= username)
+
+    context={
+        "profile":profile
+    }
+    return render(request,'users/profile_detail.html',context)
