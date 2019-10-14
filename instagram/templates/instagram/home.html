@@ -15,15 +15,30 @@
         <img src="{{image.image.url}}" class="img-posts img-responsive" id="">
 
         <div class="image-metadata">
-                <i class="fa fa-heart-o  d-inline-flex icons" aria-hidden="true"><br>{{image.likes}} likes</i>
-                <i class="fa fa-comment-o  d-inline-flex icons" aria-hidden="true"></i>
-<!--             
-            <small class="text-muted">{{ image.created_on|date:'F d, Y' }}</small> -->
+
+            <div class="stat">
+
+                <button type="button" class="{{ status}} stat" id="like"> <a href="{% url 'image-likes' image.id %}"><i
+                            class="fa fa-heart-o  d-inline-flex icons" aria-hidden="true"><br>{{image.likes.count}}
+                            likes</i> </a></button>
+            </div>
+            <div class="stat ">
+
+                <button type="button" class="{{ status}} stat" id="like"> <a href="{% url 'comment-create' image.id %}">
+                        <i class="fa fa-comment-o  d-inline-flex icons" aria-hidden="true"><br>
+                            comment</i> </a></button>
+            </div>
+
+
         </div>
 
-        <h2><a class="" href="{% url 'image-detail' image.id %}">{{ image.image_name }}</a></h2>
-        <p class="">{{ image.image_caption }}</p>
+
+
     </div>
+
+    <h2><a class="" href="{% url 'image-detail' image.id %}">{{ image.image_name }}</a></h2>
+    <p class="">{{ image.image_caption }}</p>
+
 </div>
 
 {% endfor %}
