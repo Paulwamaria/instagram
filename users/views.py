@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .forms import InstaRegistrationForm, UserUpdateForm, ProfileUpdateForm
+from django.views.generic import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from .models import Profile
 
 def register(request):
     if request.method == 'POST':
@@ -39,5 +42,9 @@ def profile(request):
         'p_form':p_form
     }
     return render(request, 'users/profile.html',context)
+
+
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = Profile
 
 
