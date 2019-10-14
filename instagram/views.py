@@ -88,7 +88,7 @@ def search_results(request):
         search_term = request.GET.get("search_user")
         searched_users = User.objects.filter(username__icontains=search_term)
         message=search_term
-        return render(request, "instagram/user_image.html", {"images":searched_users, "message":message})
+        return render(request, "instagram/search.html", {"images":searched_users, "message":message})
 
     else:
         message = "Search term not found"
