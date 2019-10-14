@@ -11,8 +11,8 @@
         <a class="mr-2" href="{% url 'user-images' image.profile.user.username %}">{{ image.profile.user.username }}</a>
         {% if image.profile == user.profile %}
         <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'image-update' image.id %}">Update</a>
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'image-delete' image.id %}">Delete</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'image-update' image.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'image-delete' image.id %}">Delete</a>
         </div>
 
         {% endif %}
@@ -20,13 +20,23 @@
 
     <div class="card-body">
         <img src="{{image.image.url}}" class="img-posts img-responsive" id="">
-
         <div class="image-metadata">
-                <i class="fa fa-heart-o  d-inline-flex" aria-hidden="true"><br>{{image.likes}} likes</i>
-                <i class="fa fa-comment-o  d-inline-flex" aria-hidden="true"></i>
-<!--             
-            <small class="text-muted">{{ image.created_on|date:'F d, Y' }}</small> -->
-        </div>
+
+                <div class="stat d-inline-flex">
+    
+                    <button type="button" class="{{ status}} stat" id="like"> <a href="{% url 'image-likes' image.id %}"><i
+                                class="fa fa-heart-o  d-inline-flex icons" aria-hidden="true"><br>{{image.likes.count}}
+                                likes</i> </a></button>
+                </div>
+                <div class="stat d-inline-flex">
+    
+                    <button type="button" class="{{ status}} stat" id="like"> <a href="#">
+                            <i class="fa fa-comment-o  d-inline-flex icons" aria-hidden="true"><br>
+                                comment</i> </a></button>
+                </div>
+    
+    
+            </div>
 
         <h2><a class="" href="#">{{ image.image_name }}</a></h2>
         <p class="">{{ object.image_caption }}</p>

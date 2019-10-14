@@ -36,7 +36,7 @@
     border-radius: 50%;
 }
 .img-posts{
-    max-width: 720px;
+    max-width: 620px;
     height: auto;
 }
 .scroll-menu {
@@ -48,6 +48,8 @@
 }
 .card{
     margin-top:30px;
+    max-width: 700px;
+    height: auto;
 }
 @media screen and (max-width: 991px) {
     .img-posts{
@@ -60,4 +62,23 @@
   }
    a{
     text-decoration: none;
+  }
+  .stat{
+      display:inline;
+     
+  }
+  .side-bar{
+      position:fixed;
+      width:30%;
+      margin-right: 30px;
+  }
+  #card-b{
+      width:250px;
+  }
+  #reg-img{
+      max-width: 500px;
+      margin-left:30%;
+  }
+  .reg-panel{
+      margin-top: 40px;
   }

@@ -6,11 +6,11 @@ from users.models import Profile
     
 
 class Image(models.Model):
-    image = models.ImageField(upload_to='media/', default='media/default.jpg')
+    image = models.ImageField(upload_to='media/uploads/', default='media/default.jpg')
     image_name = models.CharField(max_length=60)
     image_caption = models.TextField()
     created_on = models.DateTimeField(auto_now=True)
-    likes = models.IntegerField(default=0)
+    likes = models.ManyToManyField(User, blank = True, related_name ='image_likes')
     profile = models.ForeignKey(Profile, on_delete = models.CASCADE)
 
 
@@ -35,6 +35,7 @@ class Image(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     image =models.ForeignKey(Image, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.content
