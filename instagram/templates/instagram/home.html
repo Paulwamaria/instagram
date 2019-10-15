@@ -7,8 +7,15 @@
 
 <div class="card card-default">
     <div class="card-header">
-        <img src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img img-responsive" id="">
-        <a class="mr-2" href="{% url 'user-images' image.profile.user.username %}">{{ image.profile.user.username }}</a>
+        <a href="{% url 'profile-detail' image.profile.user.username %}">  <img src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img img-responsive" id=""></a>
+      
+        <a class="mr-2" href="{% url 'profile-detail' image.profile.user.username %}">{{ image.profile.user.username }}</a>
+        <div class="form-group">
+            <form action="" mthod = "POST">
+                <input type = 'hidden' value= "{{followed}}" name="followed">
+                <button type="submit" class="btn bg-info">Follow</button>
+            </form>
+        </div>
     </div>
 
     <div class="card-body">
@@ -28,6 +35,9 @@
                         <i class="fa fa-comment-o  d-inline-flex icons" aria-hidden="true"><br>
                             comment</i> </a></button>
             </div>
+    
+
+
 
 
         </div>
@@ -40,6 +50,16 @@
     <p class="">{{ image.image_caption }}</p>
 
 </div>
+<div class="comments">
+        <h4>Comments</h4>
+        {% for comment in image.image_comments.all %}
+
+        <p class="text-muted">
+            <strong>{{comment.user.username}}</strong>
+            {{comment.content}}</p>
+
+        {% endfor %}
+    </div>
 
 {% endfor %}
 
