@@ -8,14 +8,8 @@
 <div class="card card-default">
     <div class="card-header">
         <a href="{% url 'profile-detail' image.profile.user.username %}">  <img src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img img-responsive" id=""></a>
-      
         <a class="mr-2" href="{% url 'profile-detail' image.profile.user.username %}">{{ image.profile.user.username }}</a>
-        <div class="form-group">
-            <form action="" mthod = "POST">
-                <input type = 'hidden' value= "{{followed}}" name="followed">
-                <button type="submit" class="btn bg-info">Follow</button>
-            </form>
-        </div>
+      
     </div>
 
     <div class="card-body">

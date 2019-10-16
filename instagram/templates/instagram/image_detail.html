@@ -7,7 +7,7 @@
 
 <div class="card card-default">
     <div class="card-header">
-        <img src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img img-responsive" id="">
+            <a href="{% url 'profile-detail' image.profile.user.username %}">  <img src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img img-responsive" id=""></a>
         <a class="mr-2" href="{% url 'user-images' image.profile.user.username %}">{{ image.profile.user.username }}</a>
         {% if image.profile == user.profile %}
         <div>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="stat d-inline-flex">
     
-                    <button type="button" class="{{ status}} stat" id="like"> <a href="#">
+                    <button type="button" class="{{ status}} stat" id="like"> <a href="{% url 'comment-create' image.id %}">
                             <i class="fa fa-comment-o  d-inline-flex icons" aria-hidden="true"><br>
                                 comment</i> </a></button>
                 </div>

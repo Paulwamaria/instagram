@@ -12,7 +12,7 @@ def register(request):
         if form.is_valid():
             form.save()
             email = form.cleaned_data['email']
-            full_name = form.cleaned_data['full_name']
+            fullName = form.cleaned_data['fullName']
             username = form.cleaned_data.get('username')
             password1 = form.cleaned_data['password1']
             password2 = form.cleaned_data['password2']

@@ -47,6 +47,7 @@
                                 id=""></a>
 
                         <a class="mr-2" href="#">{{ user.username }}</a>
+                        <a href="{% url 'profile' %}">Edit Profile</a>
                     </div>
                     <div class="card-body card-default ">
                         <h4> Stories.</h4>
@@ -55,6 +56,7 @@
                             <a class="scroll-menu" href="{% url 'user-images' image.profile.user.username %}"> <img
                                     src="{{image.profile.profile_pic.url}}" class="rounded-circle prof-img"
                                     id="">{{image.profile.user.username}}</a>
+                                    
 
                             {% endfor %}
                         </div>

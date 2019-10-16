@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView,RedirectView
 from django.http import HttpResponse
-from .models import Image, Comment
+from .models import Image, Comment,Followers
 from users.models import Profile
 
 
@@ -43,6 +43,9 @@ class ImageCreateView(LoginRequiredMixin,CreateView):
         form.instance.profile = self.request.user.profile
         return super().form_valid(form)
 
+    
+   
+
 class ImageUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
      
     model = Image
@@ -69,16 +72,13 @@ class CommentCreateView(LoginRequiredMixin,CreateView):
     success_url = ('/')
 
     def form_valid(self,form):
+      
         form.instance.profile = self.request.user.profile
         return super().form_valid(form)
 
-    def get_user(self):
-        user = self.request.user
-        return user
+ 
 
-    def get_image(self,image_id):
-        image = get_object_or_404(Image, pk=image_id)
-        return image
+  
 
 class ImageLikeRedirectView(RedirectView):
     def get_redirect_url(self,pk, *args, **kwargs):
@@ -140,3 +140,17 @@ def display_profile(request,username):
         "profile":profile
     }
     return render(request,'users/profile_detail.html',context)
+
+
+
+
+
+def get_followers(request,username):
+    follow = Followers.objects.filter(follower = request.user ,followed=User.objects.filter(username = username).first()).all()
+    if follow :
+        follow = Followers(follower = request.user ,followed=User.objects.filter(username = username).first())
+        follow.save()
+    else:
+        follow.delete()
+    
+    return redirect(f'/profile/details/{username}')

@@ -13,6 +13,7 @@ urlpatterns = [
     path('image/<int:pk>/update/',ImageUpdateView.as_view(), name = 'image-update'),
     path('image/<int:pk>/delete/',ImageDeleteView.as_view(), name = 'image-delete'),
     path('image/<int:pk>/like/',ImageLikeRedirectView.as_view(), name = 'image-likes'),
+    path('follow/<username>/',views.get_followers, name = 'following'),
     path('search/',views.search_results, name = 'search_results'),
     
    
