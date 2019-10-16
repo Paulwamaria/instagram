@@ -39,7 +39,7 @@ Paul Kamau Wamaria
 ## Installation 
 
 * Create a virtual environmet
-* Clone the repo from this link 
+* Clone the repo from this link https://github.com/Paulwamaria/instagram.git
 * Install python3.6
 * Install the dependencies using this command: ** pip install -r requirements.txt
 * Run the server using the command: ** python manage.py runserver
