@@ -52,7 +52,7 @@
     height: auto;
 }
 @media screen and (max-width: 991px) {
-    .img-posts{
+    .img-posts,.full-profile{
       width:75%;
       height: auto;
     }
@@ -82,3 +82,7 @@
   .reg-panel{
       margin-top: 40px;
   }
+.full-profile{
+    max-width: 640px;
+    height: auto;
+}
